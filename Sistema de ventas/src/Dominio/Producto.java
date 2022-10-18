@@ -11,7 +11,7 @@ public class Producto extends Orden{
    private int id_prpoducto;
    private String nombre;
    private double precio;
-   private int contadorproducto;
+   static private  int contadorproductos;
     
     //getter
      public int getId_prpoducto() {
@@ -37,17 +37,24 @@ public class Producto extends Orden{
     //contructores
 
     private Producto() {
+         this.id_prpoducto = ++Producto.contadorproductos;
     }
 
     public Producto(String nombre, double precio) {
+        this();
         this.nombre = nombre;
         this.precio = precio;
     }
 
+   
+
     @Override
     public String toString() {
-        return "Producto{" + "id_prpoducto=" + id_prpoducto + ", nombre=" + nombre + ", precio=" + precio + ", contadorproducto=" + contadorproducto + '}';
+        return "Producto{" + "id_prpoducto=" + id_prpoducto + ", nombre=" + nombre + ", precio=" + precio + '}';
     }
+
+  
+    
     
     
     
