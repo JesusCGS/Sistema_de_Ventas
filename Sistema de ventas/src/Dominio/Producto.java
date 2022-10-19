@@ -50,7 +50,7 @@ public class Producto extends Orden{
 
     @Override
     public String toString() {
-        return "Producto{" + "id_prpoducto=" + id_prpoducto + ", nombre=" + nombre + ", precio=" + precio + '}';
+        return "Producto :" + " " + id_prpoducto + " " + nombre + " " + precio + '€';
     }
 
   
