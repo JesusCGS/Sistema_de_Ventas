@@ -11,8 +11,8 @@ import java.util.Iterator;
  * @author Alumno Mañana
  */
 public abstract class Orden {
-   private int idorden;
-   private Producto[] orden; ;
+   private int idorden=1;
+  // private Producto[] orden; ;
   // ArrayList<Orden> Ordenes = new ArrayList<>();
    ArrayList<Producto> productos = new ArrayList<>();
    private static int contadorid;
@@ -21,8 +21,23 @@ public abstract class Orden {
  
    //contructor
     public Orden(){
-        this.idorden = ++Orden.contadorid;
+      // this.idorden = ++Orden.contadorid;
     }
+     public Orden(int idorden ,ArrayList productos){
+        //this.idorden = ++Orden.contadorid;
+        //this.idorden =idorden;
+        //this();
+        this.productos =productos;
+       
+     }
+     //getter
+
+    public ArrayList<Producto> getProductos() {
+        return productos;
+    }
+     
+    
+    
 
     @Override
     public int hashCode() {
@@ -48,14 +63,18 @@ public abstract class Orden {
         }
         return true;
     }
+    @Override
+    public String toString() {
+        return "Orden{" + "idorden=" + idorden + ", productos=" + productos + '}';
+    }
     
     
     
     //metodo
-    public void agregarProducto(Producto Productos){
+    public void agregarProducto(Orden ord ,Producto Productos){
         
        if(contadorprodu!=0){
-          productos.add(Productos);
+         ord.getProductos().add(Productos);
           contadorprodu--;
            System.out.println("EL PRODUCTO: "+Productos.getNombre()+" A SIDO AÑADIDO A SU LISTA DE COMPRA");
            System.out.println("ESPACIOS DISPONIBLES EN SU LISTA : "+contadorprodu);
@@ -66,31 +85,33 @@ public abstract class Orden {
   
     }
     //metodo
-    public double calcular_total(){
+    public double calcular_total(Orden ord){
         double dinero_total=0;
-        for(Producto i :productos){
+        for(Producto i :ord.getProductos()){
             dinero_total=dinero_total+i.getPrecio();
         }
         //productos.clear();
         System.out.println("EL TOTAL A PAGAR DEL USUARIO ES : "+ dinero_total+"€");
         System.out.println("EL ID DE TU COMPRA ES : "+idorden++);
-
+       // ord.getProductos().clear();
         return dinero_total;
     }
     //metodo
-    public void mostrarOrden(){
+    public void mostrarOrden(Orden ord){
          System.out.println("VISUALIZANDO TU LISTA DE LA COMPRA");
-        Iterator<Producto> itr = productos.iterator();
+        
+        Iterator<Producto> itr = ord.getProductos().iterator();
         while (itr.hasNext()){
             Producto var = itr.next();
-            System.out.println("\t"+var);
+            System.out.println("\t"+var.toString());
         }
+        //ord.getProductos().clear();
 
     }
-    public void visualizar_ordenes(){
+    public void visualizar_ordenes(Orden ord){
         System.out.println("VISUALIZANDO COMPRA");
         System.out.println("ID : "+idorden);
-        System.out.println("PRODUCTOS: "+productos);
+        System.out.println("PRODUCTOS: "+ord.getProductos());
            /* System.out.println("");
             System.out.println("PROFESORES");
             for(Orden i:idorden){
@@ -100,6 +121,11 @@ public abstract class Orden {
         */
     
     }
+
+    
+
+    
+    
     
 
     

@@ -15,10 +15,12 @@ import java.util.Scanner;
  */
 public class test_ventas {
       static Scanner ent = new Scanner(System.in);
-      static Producto lista[]= new Producto [10];
+      //static Producto lista[]= new Producto [10];
+      static ArrayList<Orden> tOrden = new ArrayList<>();
       static ArrayList<Producto> productos = new ArrayList<>();
       static ArrayList<Producto> listado_productos = new ArrayList<>();
       static Orden o = new Orden() {};
+      static int id =0;
        static Producto p1 = new  Producto("TEKKEN_8"  ,60);
        static Producto p2 = new  Producto("PS4"       ,300);
        static Producto p3 = new  Producto("TECLADO"   ,100);
@@ -52,26 +54,24 @@ public class test_ventas {
         System.out.println("MENU\n");
         System.out.println("(1) [REALIZAR COMPRA] ");
         System.out.println("(2) [VISUALIZAR LAS COMPRAS] ");
-        System.out.println("(3) [] ");
-        System.out.println("(4) [] ");
         System.out.println("\t\t\t\t\t\t\t(0) [SALIR]");
         System.out.print("Seleccione la opcion a elegir: ");
         opcion=ent.nextInt();
         switch(opcion){
             case 1:
-              menu_productos();
+                ArrayList<Producto> producto = new ArrayList<>();
+                id++;
+                Orden ord = new Orden(id,producto) {};
+                menu_productos(ord);
                 break;
             case 2:
-               o.visualizar_ordenes();
-                break;
-            case 3:
-               
-              
-                break;
-            case 4:
-              
+                // mostrar();
                 
+            visualizarorden();
+               //mostrarOrden();
+               //o.visualizar_ordenes(ord);
                 break;
+           
             case 0:
                 break;
             default:
@@ -87,7 +87,7 @@ public class test_ventas {
     
     
 
-    public static void menu_productos(){
+    public static void menu_productos(Orden ord){
         int opcion=-1;
         boolean sw1=false;
         boolean sw2=false;
@@ -113,13 +113,13 @@ public class test_ventas {
                 if(sw1==false){
                     System.out.println("\n\n\nDEBES VISUALIZAR ANTES LA LISTA DE PRODUCTOS");
                 }else{
-                    agregar_productos_alista();
+                    agregar_productos_alista(ord);
                 }
                
                 break;
             case 3:
                  if(sw2==true){
-                    o.mostrarOrden();
+                    o.mostrarOrden(ord);
                 }else{
                      System.out.println("NECESITAS TENER PTRODUCTOS EN TU LISTA");
                 }
@@ -127,7 +127,7 @@ public class test_ventas {
                 break;
             case 4:
                  if(sw2==true){
-                     o.calcular_total();
+                     o.calcular_total(ord);
                 }else{
                    System.out.println("\n\n\nANTES DEBES AÑADIR PRODUCTOS A TU LISTA");
                 }
@@ -135,6 +135,8 @@ public class test_ventas {
               
                 break;
             case 0:
+                tOrden.add(ord);
+                
                 break;
             default:
                 System.out.println("Elija entre las opcines 1 y 5");
@@ -168,34 +170,47 @@ public class test_ventas {
         }
     }
     
-    public static void agregar_productos_alista(){
+    public static void agregar_productos_alista(Orden ord){
     int num=0;
         System.out.println("INTRODUZCA EL ID DEL PRODUCTO QUE QUIERA AÑADIR A LA LISTA");
         num= ent.nextInt();
         if(num==1){
-            o.agregarProducto(p1);
+            o.agregarProducto(ord,p1);
         }else if(num==2){
-            o.agregarProducto(p2);
+            o.agregarProducto(ord,p2);
         }else if(num ==3){
-            o.agregarProducto(p3);
+            o.agregarProducto(ord,p3);
         }else if(num ==4){
-            o.agregarProducto(p4);
+            o.agregarProducto(ord,p4);
         }else if(num ==5){
-            o.agregarProducto(p5);
+            o.agregarProducto(ord,p5);
         }else if(num ==6){
-            o.agregarProducto(p6);
+            o.agregarProducto(ord,p6);
         }else if(num ==7){
-            o.agregarProducto(p7);
+            o.agregarProducto(ord,p7);
         }else if(num ==8){
-            o.agregarProducto(p8);
+            o.agregarProducto(ord,p8);
         }else if(num ==9){
-            o.agregarProducto(p9);
+            o.agregarProducto(ord,p9);
         }else if(num ==10){
-            o.agregarProducto(p10);
+            o.agregarProducto(ord,p10);
             
         }
     
     
     }
+    
+       public static void visualizarorden(){
+           System.out.println("opsion 1___________________");
+        System.out.println("");
+        System.out.println("ordenes");
+        for(Orden i:tOrden){
+            System.out.println("\t"+i.toString());
+        }
+        System.out.println("");
+    }
+       
+      
+    
     
 }
