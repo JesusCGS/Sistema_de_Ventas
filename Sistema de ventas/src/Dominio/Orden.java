@@ -11,22 +11,22 @@ import java.util.Iterator;
  * @author Alumno Mañana
  */
 public abstract class Orden {
-   private int idorden=1;
+   private int idorden=0;
   // private Producto[] orden; ;
   // ArrayList<Orden> Ordenes = new ArrayList<>();
    ArrayList<Producto> productos = new ArrayList<>();
-   private static int contadorid;
+  private static int contadorid;
    private static int contadorprodu = 5 ;//maximo de productos a pedir son 10
    
  
    //contructor
     public Orden(){
-      // this.idorden = ++Orden.contadorid;
+      //this.idorden = ++Orden.contadorid;
     }
      public Orden(int idorden ,ArrayList productos){
         //this.idorden = ++Orden.contadorid;
-        //this.idorden =idorden;
-        //this();
+        this.idorden =idorden;
+        
         this.productos =productos;
        
      }
@@ -35,34 +35,15 @@ public abstract class Orden {
     public ArrayList<Producto> getProductos() {
         return productos;
     }
+
+    public int getIdorden() {
+        return idorden;
+    }
      
     
     
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + this.idorden;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Orden other = (Orden) obj;
-        if (this.idorden != other.idorden) {
-            return false;
-        }
-        return true;
-    }
+  
     @Override
     public String toString() {
         return "Orden{" + "idorden=" + idorden + ", productos=" + productos + '}';
@@ -92,8 +73,9 @@ public abstract class Orden {
         }
         //productos.clear();
         System.out.println("EL TOTAL A PAGAR DEL USUARIO ES : "+ dinero_total+"€");
-        System.out.println("EL ID DE TU COMPRA ES : "+idorden++);
-       // ord.getProductos().clear();
+        idorden++;
+        System.out.println("EL ID DE TU COMPRA ES : "+idorden);
+        contadorprodu=5;
         return dinero_total;
     }
     //metodo
@@ -108,7 +90,7 @@ public abstract class Orden {
         //ord.getProductos().clear();
 
     }
-    public void visualizar_ordenes(Orden ord){
+    /*public void visualizar_ordenes(Orden ord){
         System.out.println("VISUALIZANDO COMPRA");
         System.out.println("ID : "+idorden);
         System.out.println("PRODUCTOS: "+ord.getProductos());
@@ -118,9 +100,9 @@ public abstract class Orden {
                 System.out.println("\t"+i);
             }
             System.out.println("");
-        */
+        *//*
     
-    }
+    }*/
 
     
 

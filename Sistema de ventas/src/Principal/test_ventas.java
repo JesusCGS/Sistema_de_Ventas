@@ -20,7 +20,8 @@ public class test_ventas {
       static ArrayList<Producto> productos = new ArrayList<>();
       static ArrayList<Producto> listado_productos = new ArrayList<>();
       static Orden o = new Orden() {};
-      static int id =0;
+      static int id=0;
+      
        static Producto p1 = new  Producto("TEKKEN_8"  ,60);
        static Producto p2 = new  Producto("PS4"       ,300);
        static Producto p3 = new  Producto("TECLADO"   ,100);
@@ -75,7 +76,7 @@ public class test_ventas {
             case 0:
                 break;
             default:
-                System.out.println("Elija entre las opcines 1 y 5");
+                System.out.println("Elija entre las opcines 1 y 2");
                 break;
         }
         for(int i=0;i<2;i++){
@@ -110,36 +111,50 @@ public class test_ventas {
                 break;
             case 2:
                 sw2=true;
-                if(sw1==false){
-                    System.out.println("\n\n\nDEBES VISUALIZAR ANTES LA LISTA DE PRODUCTOS");
+                if(sw3==false){
+                    if(sw1==false){
+                        System.out.println("\n\n\nDEBES VISUALIZAR ANTES LA LISTA DE PRODUCTOS");
+                    }else{
+                        agregar_productos_alista(ord);
+                    }
                 }else{
-                    agregar_productos_alista(ord);
+                    System.out.println("DEBES REALIZAR OTRA COMPRA");
                 }
                
                 break;
             case 3:
-                 if(sw2==true){
-                    o.mostrarOrden(ord);
+                if(sw3==false){
+                    if(sw2==true){
+                       o.mostrarOrden(ord);
+                   }else{
+                        System.out.println("NECESITAS TENER PTRODUCTOS EN TU LISTA");
+                   }
                 }else{
-                     System.out.println("NECESITAS TENER PTRODUCTOS EN TU LISTA");
+                     System.out.println("DEBES REALIZAR OTRA COMPRA");
                 }
                
                 break;
             case 4:
-                 if(sw2==true){
-                     o.calcular_total(ord);
+                if(sw3==false){
+                    if(sw2==true){
+                        o.calcular_total(ord);
+                        sw3=true;
+                   }else{
+                      System.out.println("\n\n\nANTES DEBES AÑADIR PRODUCTOS A TU LISTA");
+                   }
                 }else{
-                   System.out.println("\n\n\nANTES DEBES AÑADIR PRODUCTOS A TU LISTA");
+                    System.out.println("DEBES REALIZAR OTRA COMPRA");
                 }
                
               
                 break;
+               
             case 0:
                 tOrden.add(ord);
                 
                 break;
             default:
-                System.out.println("Elija entre las opcines 1 y 5");
+                System.out.println("Elija entre las opcines 1 y 4");
                 break;
         }
         for(int i=0;i<2;i++){
@@ -201,9 +216,9 @@ public class test_ventas {
     }
     
        public static void visualizarorden(){
-           System.out.println("opsion 1___________________");
+           System.out.println("BIENVENIDO AL HISTORIAL DE COMPRAS");
         System.out.println("");
-        System.out.println("ordenes");
+        System.out.println("COMPRAS:");
         for(Orden i:tOrden){
             System.out.println("\t"+i.toString());
         }
